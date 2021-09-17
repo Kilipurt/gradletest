@@ -25,6 +25,9 @@ test {
 release {
     tagTemplate = 'pgp-$version'
     scmAdapters = [GitAdapter]
+    git {
+        requireBranch = ''
+    }
 }
 
 publishing {
