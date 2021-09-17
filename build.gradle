@@ -53,5 +53,5 @@ publishing {
         }
     }
 
-    afterReleaseBuild.dependsOn publish
+//    afterReleaseBuild.dependsOn publish
 }
