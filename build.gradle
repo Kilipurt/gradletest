@@ -46,11 +46,11 @@ publishing {
     }
     repositories {
         maven {
-            def releasesRepoUrl = 'https://github.com/Kilipurt/gradletest.git'
+            def releasesRepoUrl = 'https://github.com/Kilipurt/gradleart.git'
             def snapshotsRepoUrl = 'https://github.com/Kilipurt/gradleart.git'
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
         }
     }
 
-//    afterReleaseBuild.dependsOn publish
+    afterReleaseBuild.dependsOn publish
 }
