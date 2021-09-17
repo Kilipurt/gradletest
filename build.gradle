@@ -1,0 +1,54 @@
+import net.researchgate.release.GitAdapter
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'net.researchgate.release' version '2.8.1'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+release {
+    tagTemplate = 'pgp-$version'
+    scmAdapters = [GitAdapter]
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+            pom {
+                name = 'pgp'
+                scm {
+                    connection = 'scm:git:ssh:git@github.com:Kilipurt/gradletest.git'
+                    developerConnection = 'scm:git:ssh:git@github.com:Kilipurt/gradletest.git'
+                    url = 'https://github.com/Kilipurt/gradletest.git'
+                    tag = 'HEAD'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = 'https://github.com/Kilipurt/gradletest.git'
+            def snapshotsRepoUrl = 'https://github.com/Kilipurt/gradletest.git'
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+
+    afterReleaseBuild.dependsOn publish
+}
