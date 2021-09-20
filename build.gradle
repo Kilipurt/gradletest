@@ -22,7 +22,7 @@ test {
 }
 
 release {
-    println("{nexususer}")
+    println "tralala " + "{nexususer}"
     tagTemplate = 'test-$version'
     scmAdapters = [GitAdapter]
     git {
