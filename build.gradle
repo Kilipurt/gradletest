@@ -22,6 +22,7 @@ test {
 }
 
 release {
+    println("{nexususer}")
     tagTemplate = 'test-$version'
     scmAdapters = [GitAdapter]
     git {
