@@ -50,6 +50,10 @@ publishing {
             def releasesRepoUrl = 'https://nexus.mediastream.ag/content/repositories/releases'
             def snapshotsRepoUrl = 'https://nexus.mediastream.ag/content/repositories/snapshots'
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = 'andriip'
+                password = 'xPL!fAeEF9#F(Rj]'
+            }
         }
     }
 }
