@@ -22,7 +22,7 @@ test {
 }
 
 release {
-    tagTemplate = 'pgp-$version'
+    tagTemplate = 'test-$version'
     scmAdapters = [GitAdapter]
     git {
         requireBranch = ''
@@ -34,7 +34,8 @@ publishing {
         maven(MavenPublication) {
             from(components.java)
             pom {
-                name = 'pgp'
+                groupId = 'org.test'
+                artifactId = 'test-release'
                 scm {
                     connection = 'scm:git:ssh:git@github.com:Kilipurt/gradletest.git'
                     developerConnection = 'scm:git:ssh:git@github.com:Kilipurt/gradletest.git'
@@ -46,11 +47,11 @@ publishing {
     }
     repositories {
         maven {
-            def releasesRepoUrl = 'https://github.com/Kilipurt/gradleart'
-            def snapshotsRepoUrl = 'https://github.com/Kilipurt/gradleart'
+            def releasesRepoUrl = 'http://nexus.mediastream.ag/content/repositories/releases'
+            def snapshotsRepoUrl = 'http://nexus.mediastream.ag/content/repositories/snapshots'
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
         }
     }
-
-    afterReleaseBuild.dependsOn publish
 }
+
+//afterReleaseBuild.dependsOn publish
